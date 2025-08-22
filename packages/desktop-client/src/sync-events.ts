@@ -28,7 +28,7 @@ export function listenForSyncEvent(store: AppStore) {
         addNotification({
           notification: {
             type: 'warning',
-            message: 'Unable to authenticate with server',
+            message: t('Unable to authenticate with server'),
             sticky: true,
             id: 'auth-issue',
           },

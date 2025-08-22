@@ -1,4 +1,6 @@
 // @ts-strict-ignore
+import { t } from 'i18next';
+
 import { listen } from 'loot-core/platform/client/fetch';
 import * as undo from 'loot-core/platform/client/undo';
 
@@ -110,12 +112,13 @@ export function handleGlobalEvents(store: AppStore) {
       addNotification({
         notification: {
           type: 'error',
-          title: 'Unable to save changes',
+          title: t('Unable to save changes'),
           sticky: true,
-          message:
+          message: t(
             'This browser only supports using the app in one tab at a time, ' +
-            'and another tab has opened the app. No changes will be saved ' +
-            'from this tab; please close it and continue working in the other one.',
+              'and another tab has opened the app. No changes will be saved ' +
+              'from this tab; please close it and continue working in the other one.',
+          ),
         },
       }),
     );
