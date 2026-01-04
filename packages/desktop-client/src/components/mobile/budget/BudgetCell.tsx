@@ -95,7 +95,13 @@ export function BudgetCell<
                 amount,
               });
               showUndoNotification({
-                message: `${category.name} budget has been updated to ${format(amount, 'financial')}.`,
+                message: t(
+                  `{{categoryName}} budget has been updated to {{amount}}.`,
+                  {
+                    categoryName: category.name,
+                    amount: format(amount, 'financial'),
+                  },
+                ),
               });
             },
             onCopyLastMonthAverage: () => {
@@ -103,7 +109,10 @@ export function BudgetCell<
                 category: category.id,
               });
               showUndoNotification({
-                message: `${category.name} budget has been set to last month's budgeted amount.`,
+                message: t(
+                  `{{categoryName}} budget has been set to last month's budgeted amount.`,
+                  { categoryName: category.name },
+                ),
               });
             },
             onSetMonthsAverage: numberOfMonths => {
@@ -118,7 +127,16 @@ export function BudgetCell<
                 category: category.id,
               });
               showUndoNotification({
-                message: `${category.name} budget has been set to ${numberOfMonths === 12 ? 'yearly' : `${numberOfMonths} month`} average.`,
+                message: t(
+                  `{{categoryName}} budget has been set to {{timePeriod}} average.`,
+                  {
+                    categoryName: category.name,
+                    timePeriod:
+                      numberOfMonths === 12
+                        ? t('yearly')
+                        : t(`{{numberOfMonths}} month`, { numberOfMonths }),
+                  },
+                ),
               });
             },
             onApplyBudgetTemplate: () => {
@@ -126,7 +144,10 @@ export function BudgetCell<
                 category: category.id,
               });
               showUndoNotification({
-                message: `${category.name} budget templates have been applied.`,
+                message: t(
+                  `{{categoryName}} budget templates have been applied.`,
+                  { categoryName: category.name },
+                ),
                 pre: categoryNotes ?? undefined,
               });
             },
@@ -145,6 +166,7 @@ export function BudgetCell<
     showUndoNotification,
     onEditNotes,
     format,
+    t,
   ]);
 
   return (
