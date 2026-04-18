@@ -127,16 +127,16 @@ export function BudgetCell<
                 category: category.id,
               });
               showUndoNotification({
-                message: t(
-                  `{{categoryName}} budget has been set to {{timePeriod}} average.`,
-                  {
-                    categoryName: category.name,
-                    timePeriod:
-                      numberOfMonths === 12
-                        ? t('yearly')
-                        : t(`{{numberOfMonths}} month`, { numberOfMonths }),
-                  },
-                ),
+                message:
+                  numberOfMonths === 12
+                    ? t(
+                        `{{categoryName}} budget has been set to yearly average.`,
+                        { categoryName: category.name },
+                      )
+                    : t(
+                        `{{categoryName}} budget has been set to {{count}}-month average.`,
+                        { categoryName: category.name, count: numberOfMonths },
+                      ),
               });
             },
             onApplyBudgetTemplate: () => {
